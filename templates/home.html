@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="main-wrapper">
+	{% for doctor in doctor_list %}
+	    <section class="blog-list px-3 py-5 p-md-5">
+		    <div class="container">
+			    <div class="item mb-5">
+				    <div class="media">
+					    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="{{doctor.image.url}}" alt="{{doctor.name}}">
+					    <div class="media-body">
+						    <h3 class="title mb-1">{{doctor.name}}</h3>
+						    <div class="meta mb-1"><span class="date">{{doctor.qualifications}}</span><span class="time">{{doctor.department}}</span><span class="comment"></span></div>
+							{% if user.is_authenticated %}
+						    	<a class="more-link" href="{% url 'Appointmed:appointment'  %}">Book an appointment</a>
+							{% else %}
+								<a class="more-link" href="{% url 'accounts:register'  %}">Book an appointment</a>
+							{% endif %}
+					    </div>
+				    </div>
+			    </div>
+			</div>
+	    </section>
+	{% endfor %}
+	{% if is_paginated %}
+	<nav class="blog-nav nav nav-justified my-5">
+		{% if page_obj.has_previous %}
+			<a class="nav-link-prev nav-item nav-link d-none rounded-left" href="?page={{ page_obj.previous_page_number }}">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+		{% endif %}
+    	{% if page_obj.has_next %}
+			<a class="nav-link-next nav-item nav-link rounded" href="?page={{ page_obj.next_page_number }}">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+		{% endif %}
+	</nav>
+	{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% load static %}
+<header class="header text-center">
+	    <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">Appoint-Med</a></h1>
+
+	    <nav class="navbar navbar-expand-lg navbar-dark" >
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div id="navigation" class="collapse navbar-collapse flex-column" >
+				<div class="profile-section pt-3 pt-lg-0">
+				    <img class="profile-image mb-3 rounded-circle mx-auto" src="{% static 'assets/images/logo.png' %}" alt="image" >
+
+					<div class="bio mb-3">Welcome to Appoint-Med. For all your health requirements. Book an appointment with your Doctor today.</div>
+				</div>
+				<ul class="navbar-nav flex-column text-left">
+					<li class="nav-item active">
+					    <a class="nav-link" href="home.html"><i class="fas fa-home fa-fw mr-2"></i>Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+					    <a class="nav-link" href="{% url 'Appointmed:appointment' %}"><i class="fas fa-bookmark fa-fw mr-2"></i>Book an Appointment</a>
+					</li>
+					{% if user.is_authenticated %}
+					<li class="nav-item">
+					    <a class="nav-link" href="{% url 'accounts:login' %}"><i class="fas fa-user mr-2"></i>Hi, {{user.first_name}}</a>
+					</li>
+					<li class="nav-item">
+					    <a class="nav-link" href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
+					</li>
+					{% else %}
+					<li class="nav-item">
+					    <a class="nav-link" href="{% url 'accounts:login' %}"><i class="fas fa-sign-in-alt mr-2"></i>Login</a>
+					</li>
+					{% endif %}
+				</ul>
+			</div>
+		</nav>
+    </header>

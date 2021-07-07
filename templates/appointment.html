@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="main-wrapper">
+  <section class="blog-list px-3 py-5 p-md-5">
+    <div class="container">
+      <div class="item mb-5">
+        <div class="media">
+            <div class="media-body">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <section id="form-wrapper">
+                            <form method="POST" class="appointment-form">{% csrf_token %}
+                                {{ form.as_p }}
+                                <input type="date" name="date" placeholder="Select a date"><br><br>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="reset" class="btn btn-default">Reset</button>
+                            </form>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}
